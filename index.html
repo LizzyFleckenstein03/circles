@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CIRCLES</title>
+	<script>
+		mode=true;
+		stop=false;
+		var sh=document.querySelector('html').clientHeight;
+		var sw=document.querySelector('html').clientWidth;
+	function blubb(){
+		var div=document.getElementsByTagName("div")[0];
+		if(mode){
+			if(parseInt(div.style.width.replace(/px/,''))-5<=0){
+			mode=false;
+			}
+		div.style.width=Math.abs(parseInt(div.style.width.replace(/px/,''))-5)+"px";
+	}
+	else{
+		if(parseInt(div.style.width.replace(/px/,''))-5>=290){
+			//stop=true;
+			mode=true;
+			}
+		
+		div.style.width=Math.abs(parseInt(div.style.width.replace(/px/,''))+5)+"px";
+		}
+		if(!stop){
+	setTimeout(blubb,10);
+}	
+	}
+	</script>
+</head>
+<body bgcolor="grey">
+	<center><div onclick=""style="border-radius:50%;background-color:black;width:300px;height:300px;"></div></center>
+	<div onclick="" style="border-radius:50%;background-color:green;width:100px;height:100px;position:absolute;top:500px;left:500px"></div>
+	<div style="border-radius:50%;background-color:red;width:200px;height:200px;position:absolute;top:400px;left:900px"></div>
+	<div style="border-radius:50%;background-color:yellow;width:150px;height:150px;position:absolute;top:200px;left:300px"></div>
+	<div style="border-radius:50%;background-color:blue;width:50px;height:50px;position:absolute;top:200px;left:1000px"></div>
+	<div style="border-radius:50%;background-color:white;width:25px;height:25px;position:absolute;top:50px;left:70px"></div>
+	<div style="border-radius:50%;background-color:orange;width:250px;height:250px;position:absolute;top:500px;right:50px"></div>
+	<script>
+	clocklock();
+	blubb();
+	psd=false;
+	dir="down";
+	hdir=-1;
+	vdir=1;
+	hdir2=1;
+	vdir2=1;
+	hi();
+	better();
+	good();
+	function clocklock(){
+		var div=document.getElementsByTagName("div")[1];
+		var nettop=(parseInt(div.style.top.replace(/px/,''))+Math.floor(Math.random()*7)-3);
+		if(nettop>0&&nettop+100<sh){
+			div.style.top=nettop+"px";
+			}
+		var netleft=(parseInt(div.style.left.replace(/px/,''))+Math.floor(Math.random()*7)-3);
+		if(netleft>0&&netleft+100<sw){
+			div.style.left=netleft+"px";
+			}	
+		setTimeout(clocklock,5);
+		}
+	function hi(){
+		var div=document.getElementsByTagName("div")[2];
+		if(!psd){
+			div.style.left=parseInt(div.style.left.replace(/px/,''))+10+"px";
+			div.style.top=parseInt(div.style.top.replace(/px/,''))+10+"px";
+			div.style.width=parseInt(div.style.width.replace(/px/,''))-20+"px";
+			div.style.height=parseInt(div.style.height.replace(/px/,''))-20+"px";
+			}
+		else{
+			div.style.left=parseInt(div.style.left.replace(/px/,''))-10+"px";
+			div.style.top=parseInt(div.style.top.replace(/px/,''))-10+"px";
+			div.style.width=parseInt(div.style.width.replace(/px/,''))+20+"px";
+			div.style.height=parseInt(div.style.height.replace(/px/,''))+20+"px";			
+			}	
+			psd=!psd;
+		setTimeout(hi,175);	
+		}
+	function better(){
+		var div=document.getElementsByTagName("div")[3];
+		if(Math.floor(Math.random()*21)===0){
+		dir=["up","down","left","right"][Math.floor(Math.random()*5)];
+		}
+		if(dir==="down"){
+			nettop=parseInt(div.style.top.replace(/px/,''))+5;
+			if(nettop+150<sh){
+			div.style.top=nettop+"px";	
+				}
+			else{
+				dir="up";
+				better();
+				return 0;
+				}	
+			}
+		else if(dir==="up"){
+			nettop=parseInt(div.style.top.replace(/px/,''))-5;
+			if(nettop>0){
+			div.style.top=nettop+"px";	
+				}
+			else{
+				dir="down";
+				better();
+				return 0;
+				}
+			}
+		else if(dir==="right"){
+			nettop=parseInt(div.style.left.replace(/px/,''))-5;
+			if(nettop>0){
+			div.style.left=nettop+"px";	
+				}
+			else{
+				dir="left";
+				better();
+				return 0;
+				}	
+			}
+		else if(dir==="left"){
+			nettop=parseInt(div.style.left.replace(/px/,''))+5;
+			if(nettop+150<sw){
+			div.style.left=nettop+"px";	
+				}
+			else{
+				dir="right";
+				better();
+				return 0;
+				}	
+			
+			}			
+			setTimeout(better,10);
+		}
+		function good(){
+			var div=document.getElementsByTagName("div")[4];
+			rar=50;
+			brak=false;
+			step=3;
+			if(Math.floor(Math.random()*rar)===0){
+			hdir=hdir*(-1);	
+				}
+			if(Math.floor(Math.random()*rar)===0){
+			vdir=vdir*(-1);	
+				}
+			netleft=parseInt(div.style.left.replace(/px/,''))+step*hdir;
+			nettop=parseInt(div.style.top.replace(/px/,''))+step*vdir;
+			if(netleft>0&&netleft+50<sw){
+			div.style.left=netleft+"px";	
+				}
+			else{
+			hdir=hdir*(-1);	
+			brak=true;
+				}
+			if(nettop>0&&nettop+50<sh){
+			div.style.top=nettop+"px";	
+				}
+			else{
+			vdir=vdir*(-1);
+			brak=true;	
+				}
+			if(brak){
+				good();
+				}
+			else{
+				setTimeout(good,10);
+				}				
+			}	
+				function golf(){
+			var div=document.getElementsByTagName("div")[5];
+			brak=false;
+			step=5;
+			netleft=parseInt(div.style.left.replace(/px/,''))+step*hdir2;
+			nettop=parseInt(div.style.top.replace(/px/,''))+step*vdir2;
+			if(netleft>0&&netleft+25<sw){
+			div.style.left=netleft+"px";	
+				}
+			else{
+			hdir2=hdir2*(-1);	
+			brak=true;
+				}
+			if(nettop>0&&nettop+25<sh){
+			div.style.top=nettop+"px";	
+				}
+			else{
+			vdir2=vdir2*(-1);
+			brak=true;	
+				}
+			if(brak){
+				golf();
+				}
+			else{
+				setTimeout(golf,10);
+				}				
+			}	
+			golf();	
+			var isk=1;
+			quadraturDesKreises();
+			function quadraturDesKreises(){
+			var div=document.getElementsByTagName("div")[6];
+			step=1;
+			var net=parseInt(div.style.borderRadius.replace(/%/,''))-step*isk;
+			div.style.borderRadius=net+"%";
+			if(net===0||net===100){
+				isk=isk*(-1);
+				}
+			setTimeout(quadraturDesKreises,10);	
+				}	
+	</script>
+</body>
+</html>
